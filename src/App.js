@@ -79,7 +79,12 @@ function App() {
           <div className="date-time">
             <p className="bold">🕛 Date and Time: {formattedDateTime}</p>
           </div>
-
+          {data.name == undefined && 
+          <div className="message">
+            <h1>Welcome!! </h1>
+            <p>Weather App ReactJs|| ~ Sharu</p>
+          </div>
+}
         
        </div>
     </div>
