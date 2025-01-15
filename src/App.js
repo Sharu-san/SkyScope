@@ -48,7 +48,7 @@ function App() {
        <div className="container">
         <div className="top">
           <div classname="location">
-            <p>{data.name}</p>
+            <p>📍{data.name}</p>
           </div>
           <div className="temp">
             {data.main ? <h1>{data.main.temp}°F</h1> : null}
