@@ -5,18 +5,24 @@ function App() {
 
   const[data,setData]= useState('')
   const[location,setLocation]= useState('')
+  const[errormsg,setErrormsg]= useState('')
+
   const [dateTime, setDateTime] = useState(new Date());
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=afb5e0a19b4ecd94334388e7a9f3e197`;
 
+  //Search Location 
   const searchLocation = (event)=>{
     if(event.key === 'Enter'){
       axios.get(url).then((response) =>{
         setData(response.data)
         console.log(response.data)
       })
+      .catch((error)=> {
+        setErrormsg('Please Enter Correctly and with Proper Spacing!..Thankyou!');
+      })
         setLocation('')
-    }   
+     }
   }
 
 
@@ -26,7 +32,7 @@ function App() {
       setDateTime(new Date());
     }, 1000);
 
-    return () => clearInterval(intervalId); // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   // Format date and time as needed
@@ -43,6 +49,13 @@ function App() {
       onKeyPress={searchLocation}
       placeholder="Enter Location"
       type="text"/>
+
+      {/* Error message */}
+      {errormsg && (
+        <div style={{color:'cyan', padding:'20px'}}>
+          <strong>Error : </strong>{errormsg}
+        </div>
+      )}
 
      </div>
        <div className="container">
@@ -84,8 +97,7 @@ function App() {
             <h1>Welcome!! </h1>
             <p>Weather App ReactJs|| ~ Sharu</p>
           </div>
-}
-        
+}       
        </div>
     </div>
   );
